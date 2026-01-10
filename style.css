@@ -28,7 +28,7 @@ body {
 
   background:
     linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.58)),
-    url("imagen/imagen-couples.png") center / cover no-repeat;
+    url("imagen-couples.png") center / cover no-repeat;
 
   display: flex;
   align-items: flex-end;
