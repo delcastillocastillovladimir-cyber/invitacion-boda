@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gracias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-content">
+
+    <h1 id="titulo">Gracias 💐</h1>
+    <p id="mensaje"></p>
+
+    <div class="thank-icons">💍 ❤️ ✨</div>
+
+    <div class="next-step">
+      <p id="cta-text" class="cta-text"></p>
+
+      <a id="wa-btn" class="btn btn-confirm" href="#" target="_blank" rel="noopener">
+        📲 Enviar por WhatsApp
+      </a>
+
+      <p class="small-note" id="note"></p>
+    </div>
+
+    <a href="index.html" class="btn back-btn">🏠 Volver al inicio</a>
+
+  </div>
+</header>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const respuesta = params.get("respuesta");
+  const nombre = (params.get("nombre") || "").trim();
+  const acompanantes = params.get("acompanantes") || "0";
+
+  const titulo = document.getElementById("titulo");
+  const mensaje = document.getElementById("mensaje");
+  const ctaText = document.getElementById("cta-text");
+  const waBtn = document.getElementById("wa-btn");
+  const note = document.getElementById("note");
+
+  // 📞 Tu número de WhatsApp (SIN +)
+  const phone = "447729965201";
+
+  // Texto acompañantes
+  const acompTxt = (acompanantes === "1")
+    ? "1 acompañante"
+    : `${acompanantes} acompañantes`;
+
+  // 💳 Datos bancarios (SOLO para los que dicen SÍ)
+  const bankInfo =
+`Datos para regalo 🎁
+Banco: CHASE
+Titular: VLADIMIR Y MADAY
+Sort Code: 20-39-80
+Account Number: 59034525`;
+
+  let waText = `Hola, soy ${nombre}. `;
+
+  if (respuesta === "si") {
+    titulo.innerText = "¡Gracias! 💖";
+    mensaje.innerText = "Estamos muy felices de contar contigo en nuestro gran día.";
+    ctaText.innerText = "Solo falta enviar tu confirmación por WhatsApp:";
+    waText += `Confirmo que SÍ asistiré a la boda. Iré con ${acompTxt}.\n\n${bankInfo}`;
+  } else if (respuesta === "no") {
+    titulo.innerText = "Gracias 💐";
+    mensaje.innerText = "Agradecemos mucho tu tiempo y cariño. Te llevamos en el corazón.";
+    ctaText.innerText = "Si quieres, avísanos por WhatsApp para llevar el control:";
+    waText += "Lamentablemente NO podré asistir a la boda.";
+  } else {
+    titulo.innerText = "Gracias 💐";
+    mensaje.innerText = "Tu respuesta ha sido registrada.";
+    ctaText.innerText = "Si deseas, puedes escribirnos por WhatsApp:";
+    waText += "Te escribo por lo de la boda.";
+  }
+
+  // 🔗 Link final de WhatsApp
+  const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(waText)}`;
+  waBtn.href = waUrl;
+
+  // Nota inferior
+  if (!nombre) {
+    note.innerText = "Tip: vuelve y escribe tu nombre para que el mensaje salga completo.";
+  } else {
+    note.innerText = "Se abrirá WhatsApp con el mensaje listo para enviar.";
+  }
+</script>
+
+</body>
+</html>

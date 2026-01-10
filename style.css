@@ -1,0 +1,459 @@
+/* ===============================
+   RESET Y BASE (iPhone FIRST)
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ===============================
+   HERO / FONDO (iPhone)
+   - svh/dvh evita saltos por barra Safari
+   - no usamos fixed en móvil
+================================ */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.58)),
+    url("imagen/imagen-couples.png") center / cover no-repeat;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 18px 14px 15px;
+}
+
+/* ✅ SIN CUADRO BLANCO */
+.hero-content {
+  background: transparent;
+  padding: 18px 10px;
+  max-width: 520px;
+  width: 100%;
+}
+
+/* ✅ Nombres súper protagonistas */
+.hero-content h1 {
+  font-size: 2.55rem;         /* iPhone: grande pero sin romper */
+  line-height: 1.08;
+  margin-bottom: 10px;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 0 4px 14px rgba(246, 255, 0, 0.78);
+}
+
+/* ✅ Textos MUY legibles */
+.hero-content p,
+.event-info p,
+.cta-text,
+.small-note,
+.thank-icons {
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.98);
+}
+
+/* “¡Nos casamos!” */
+.hero-content p:first-of-type {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* Párrafos generales */
+.hero-content p {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+/* ===============================
+   COUNTDOWN (iPhone)
+================================ */
+#countdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0 18px;
+  justify-items: center;
+}
+
+.time-box {
+  width: 100%;
+  max-width: 160px;
+  background: rgba(214, 191, 168, 0.96);
+  padding: 12px 10px;
+  border-radius: 16px;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(246, 255, 0, 0.78);
+}
+
+.time-box span {
+  font-size: 1.7rem;
+  font-weight: 900;
+  display: block;
+}
+
+.time-box small {
+  font-size: 0.86rem;
+  opacity: 0.96;
+}
+
+/* ===============================
+   INFO EVENTO
+================================ */
+.event-info {
+  margin-top: 6px;
+}
+
+.event-info p {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.gift {
+  font-size: 1.5rem;
+}
+.gift-wrapper { margin-top: 10px; }
+
+.gift-toggle {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gift-box {
+  display: none;
+  margin: 8px auto 0;
+  width: 100%;
+  max-width: 300px;
+  text-align: left;
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.22);
+}
+
+.gift-box.show { display: block; }
+
+.gift-title { font-size: 0.9rem; margin-bottom: 4px; }
+.gift-line  { font-size: 0.82rem; margin: 3px 0; line-height: 1.2; }
+.gift-line span { font-weight: 600; }
+
+.btn-copy {
+  margin-top: 6px;
+  padding: 8px 10px;
+  font-size: 0.82rem;
+  width: 100%;
+}
+
+.gift-note { margin-top: 4px; font-size: 0.75rem; opacity: 0.8; }
+
+
+/* ===============================
+   BOTONES (iPhone)
+================================ */
+.btn {
+  width: 100%;
+  max-width: 360px;
+  padding: 14px 18px;
+  background: #d6bfa8;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 1rem;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  margin: 10px auto 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-pulse {
+  animation: pulse-confirm 2.2s infinite;
+}
+
+.btn:active {
+  transform: scale(0.99);
+}
+
+/* Botón música (comodito en iPhone) */
+#music-btn {
+  position: fixed;
+  bottom: 14px;
+  right: 14px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #d6bfa8;
+  color: white;
+  font-size: 22px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
+  z-index: 999;
+  animation: pulse 2s infinite;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+
+/* ===============================
+   CARTA
+================================ */
+.letter-container {
+  margin-top: 18px;
+  position: relative;
+}
+
+.letter-btn {
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* carta con panel blanco SOLO en la carta para leer perfecto */
+.letter-message {
+  display: none;
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #222;
+  padding: 16px;
+  border-radius: 16px;
+  text-align: left;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.30);
+}
+
+.letter-message.show {
+  display: block;
+}
+
+.letter-message h2 {
+  margin-bottom: 8px;
+  color: #a77b5a;
+}
+
+/* ===============================
+   GALERÍA (si la usas)
+================================ */
+.gallery {
+  margin-top: 18px;
+}
+
+.gallery h2 {
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.78);
+  font-size: 1.25rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
+}
+
+/* ===============================
+   RSVP FORM (confirmar.html)
+================================ */
+.rsvp-form {
+  margin-top: 8px;
+}
+
+.field {
+  text-align: left;
+  margin: 12px 0;
+}
+
+.field span {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.78);
+  font-size: 0.95rem;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  outline: none;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.26);
+  color: #fff;
+}
+
+.field input::placeholder {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: rgba(214, 191, 168, 0.95);
+  box-shadow: 0 0 0 3px rgba(214, 191, 168, 0.25);
+}
+
+.confirm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.btn-confirm {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  width: 100%;
+  max-width: 260px;
+  margin: 14px auto 0;
+  opacity: 0.95;
+}
+
+.btn.no {
+  filter: brightness(0.95);
+}
+
+/* ===============================
+   GRACIAS
+================================ */
+.thank-icons {
+  margin: 16px 0;
+  font-size: 1.5rem;
+  letter-spacing: 6px;
+  opacity: 0.95;
+}
+
+.cta-text {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.small-note {
+  margin-top: 8px;
+  font-size: 0.92rem;
+  opacity: 0.9;
+}
+
+/* ===============================
+   PLAYER OCULTO
+================================ */
+#music-player {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ===============================
+   AJUSTES PARA iPhone GRANDES (Pro Max)
+================================ */
+@media (min-width: 430px) {
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  #countdown {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .time-box {
+    max-width: 120px;
+  }
+}
+
+/* ===============================
+   TABLET/DESKTOP (opcional)
+================================ */
+@media (min-width: 768px) {
+  .hero {
+    padding: 26px;
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)),
+      url("imagen/imagen-couples.png") center / cover no-repeat fixed;
+  }
+
+  .hero-content {
+    padding: 26px 18px;
+  }
+
+  .hero-content h1 {
+    font-size: 3.1rem;
+  }
+
+  #countdown {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .time-box {
+    width: 96px;
+    max-width: none;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@keyframes pulse-confirm {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 14px 30px rgba(214, 191, 168, 0.75);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
+  }
+}

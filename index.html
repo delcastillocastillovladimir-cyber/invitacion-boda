@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vladimir & Maday</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+    <div class="hero-content">
+        <h1>Vladimir & Maday</h1>
+        <p>¡Nos casamos!</p>
+
+        <div id="countdown"></div>
+
+        <div class="event-info">
+            <p><strong>📅 Fecha:</strong> 14 de Febrero, 2026</p>
+            <p><strong>🕓 Hora:</strong> 4:00 PM</p>
+            <p><strong>📍 Lugar:</strong> 540 Westhorne Ave, London SE9 6DH </p>
+            <p><strong>👔 Dress Code:</strong> Elegante</p>
+            
+         <div class="gift-wrapper">
+            <button class="gift-toggle" id="gift-toggle" type="button">
+                🎁 Ver datos para regalo
+            </button>  
+
+        <div class="gift-box">
+            <p class="gift-title"><strong>Cuenta bancaria (regalos)</strong></p>
+
+            <p class="gift-line"><strong>Banco:</strong> <span>CHASE</span></p>
+            <p class="gift-line"><strong>Titular:</strong> <span>VLADIMIR Y MADAY</span></p>
+            <p class="gift-line"><strong>Sort Code:</strong> <span>60-84-07</span></p>
+            <p class="gift-line"><strong>Account Number:</strong> <span>48145593</span></p>
+            
+            <button class="btn btn-copy" type="button" id="copy-bank">
+             📋 Copiar datos
+            </button>
+
+            <p class="gift-note">Gracias por su cariño 💛</p>
+        </div>
+
+        </div>
+
+        <a class="btn btn-pulse" href="confirmar.html">Confirmar asistencia</a>
+
+        <div class="letter-container">
+            <button id="letter" class="letter-btn">💌</button>
+            <div id="letter-message" class="letter-message">
+                <h2>Queridos familiares y amigos</h2>
+                <p>
+                    Con mucha alegría, queremos invitarlos a celebrar con nosotros el día más importante de nuestras vidas.
+                    Su presencia hará este momento aún más especial.
+                </p>
+                <p><strong>¡Los esperamos con cariño! ❤️</strong></p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<button id="music-btn">❤️</button>
+
+<script>
+const weddingDate = new Date("February 14, 2026 16:00:00").getTime();
+const countdown = document.getElementById("countdown");
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+        countdown.innerHTML = "¡Hoy es el gran día! 💍";
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    countdown.innerHTML = `
+        <div class="time-box"><span>${days}</span><small>Días</small></div>
+        <div class="time-box"><span>${hours}</span><small>Horas</small></div>
+        <div class="time-box"><span>${minutes}</span><small>Min</small></div>
+        <div class="time-box"><span>${seconds}</span><small>Seg</small></div>
+    `;
+}, 1000);
+</script>
+
+<script>
+let player;
+let playing = false;
+
+function onYouTubeIframeAPIReady() {
+    // Crea el reproductor dentro del <div id="youtube-audio"></div>
+    player = new YT.Player('youtube-audio', {
+        height: '0',
+        width: '0',
+        videoId: 'TAj-1eXzJDI',
+        playerVars: {
+            autoplay: 0,
+            loop: 1,
+            playlist: 'TAj-1eXzJDI',
+            controls: 0,
+            modestbranding: 1
+        }
+    });
+}
+
+const btn = document.getElementById("music-btn");
+btn.addEventListener("click", () => {
+    if (!player) return;
+
+    if (!playing) {
+        player.playVideo();
+        playing = true;
+        btn.innerText = "🔊";
+    } else {
+        player.pauseVideo();
+        playing = false;
+        btn.innerText = "❤️";
+    }
+});
+
+// Cargar API de YouTube
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.body.appendChild(tag);
+</script>
+
+<script>
+const letterBtn = document.getElementById("letter");
+const letterMessage = document.getElementById("letter-message");
+
+letterBtn.addEventListener("click", () => {
+    letterMessage.classList.toggle("show");
+});
+</script>
+
+<!-- MÚSICA YOUTUBE OCULTA -->
+<div id="music-player">
+    <div id="youtube-audio"></div>
+</div>
+
+<audio autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+<script>
+  function fallbackCopyTextToClipboard(text) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+
+    // Evita zoom/scroll en iPhone
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.top = "-9999px";
+    textarea.style.left = "-9999px";
+
+    document.body.appendChild(textarea);
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length); // iOS
+
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (e) {
+      ok = false;
+    }
+
+    document.body.removeChild(textarea);
+    return ok;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const copyBtn = document.getElementById("copy-bank");
+    if (!copyBtn) return;
+
+    copyBtn.addEventListener("click", async () => {
+      const text =
+`Banco: CHASE
+Titular: VLADIMIR Y MADAY
+Sort Code: 20-39-80
+Account Number: 59034525`;
+
+      // 1) Intento moderno
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          copyBtn.textContent = "✅ Copiado";
+          setTimeout(() => (copyBtn.textContent = "📋 Copiar datos"), 1600);
+          return;
+        }
+      } catch (e) {
+        // sigue al fallback
+      }
+
+      // 2) Fallback iPhone/Safari
+      const ok = fallbackCopyTextToClipboard(text);
+      if (ok) {
+        copyBtn.textContent = "✅ Copiado";
+        setTimeout(() => (copyBtn.textContent = "📋 Copiar datos"), 1600);
+      } else {
+        alert("No se pudo copiar automáticamente. Mantén presionado el texto y copia manualmente.");
+      }
+    });
+  });
+</script>
+<script>
+  const giftToggle = document.getElementById("gift-toggle");
+  const giftBox = document.getElementById("gift-box");
+
+  if (giftToggle && giftBox) {
+    giftToggle.addEventListener("click", () => {
+      giftBox.classList.toggle("show");
+      giftToggle.textContent = giftBox.classList.contains("show")
+        ? "❌ Ocultar datos de regalo"
+        : "🎁 Ver datos para regalo";
+    });
+  }
+</script>
+
+
+</body>
+</html>

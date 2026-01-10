@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmar Asistencia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-content">
+
+    <h1>Confirmar asistencia</h1>
+    <p>Completa tus datos y elige una opción 💍</p>
+
+    <form id="rsvp-form" class="rsvp-form">
+      <label class="field">
+        <span>Nombre y apellido</span>
+        <input id="nombre" name="nombre" type="text" placeholder="Ej: Ana Pérez" autocomplete="name" required />
+      </label>
+
+      <label class="field">
+        <span>Acompañantes</span>
+        <select id="acompanantes" name="acompanantes">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      </label>
+
+      <div class="confirm-actions">
+        <button type="button" class="btn btn-confirm" id="btn-si">💖 Sí, asistiré</button>
+        <button type="button" class="btn no btn-confirm" id="btn-no">😔 No podré asistir</button>
+      </div>
+
+      <a class="btn back-btn" href="index.html">⬅ Volver</a>
+    </form>
+
+  </div>
+</header>
+
+<script>
+  const nombreEl = document.getElementById("nombre");
+  const acompEl = document.getElementById("acompanantes");
+
+  function go(respuesta) {
+    const nombre = (nombreEl.value || "").trim();
+    if (!nombre) {
+      nombreEl.focus();
+      return;
+    }
+    const acompanantes = acompEl.value;
+
+    const url =
+      `gracias.html?respuesta=${encodeURIComponent(respuesta)}` +
+      `&nombre=${encodeURIComponent(nombre)}` +
+      `&acompanantes=${encodeURIComponent(acompanantes)}`;
+
+    window.location.href = url;
+  }
+
+  document.getElementById("btn-si").addEventListener("click", () => go("si"));
+  document.getElementById("btn-no").addEventListener("click", () => go("no"));
+</script>
+
+</body>
+</html>
