@@ -418,6 +418,7 @@ body {
       linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)),
       url("imagen-couples.png") center / cover no-repeat fixed;
   }
+  }
 
   .hero-content {
     padding: 26px 18px;
