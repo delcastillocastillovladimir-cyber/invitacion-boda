@@ -35,7 +35,6 @@
   const params = new URLSearchParams(window.location.search);
   const respuesta = params.get("respuesta");
   const nombre = (params.get("nombre") || "").trim();
-  const acompanantes = params.get("acompanantes") || "0";
 
   const titulo = document.getElementById("titulo");
   const mensaje = document.getElementById("mensaje");
@@ -45,11 +44,6 @@
 
   // 📞 Tu número de WhatsApp (SIN +)
   const phone = "447729965201";
-
-  // Texto acompañantes
-  const acompTxt = (acompanantes === "1")
-    ? "1 acompañante"
-    : `${acompanantes} acompañantes`;
 
   // 💳 Datos bancarios (SOLO para los que dicen SÍ)
   const bankInfo =
@@ -62,11 +56,12 @@ Account Number: 59034525`;
   let waText = `Hola, soy ${nombre}. `;
 
   if (respuesta === "si") {
-    titulo.innerText = "¡Gracias! 💖";
-    mensaje.innerText = "Estamos muy felices de contar contigo en nuestro gran día.";
-    ctaText.innerText = "Solo falta enviar tu confirmación por WhatsApp:";
-    waText += `Confirmo que SÍ asistiré a la boda. Iré con ${acompTxt}.\n\n${bankInfo}`;
-  } else if (respuesta === "no") {
+  titulo.innerText = "¡Gracias! 💖";
+  mensaje.innerText = "Estamos muy felices de contar contigo en nuestro gran día.";
+  ctaText.innerText = "Solo falta enviar tu confirmación por WhatsApp:";
+  waText += `Confirmo que SÍ asistiré a la boda.\n\n${bankInfo}`;
+  }
+  else if (respuesta === "no") {
     titulo.innerText = "Gracias 💐";
     mensaje.innerText = "Agradecemos mucho tu tiempo y cariño. Te llevamos en el corazón.";
     ctaText.innerText = "Si quieres, avísanos por WhatsApp para llevar el control:";
