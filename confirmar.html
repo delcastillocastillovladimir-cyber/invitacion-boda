@@ -16,17 +16,30 @@
     <p>Completa tus datos 💍</p>
 
     <form id="rsvp-form" class="rsvp-form">
+
       <label class="field">
         <span>Nombre y apellido</span>
-        <input id="nombre" name="nombre" type="text" placeholder="Ej: Ana Pérez" autocomplete="name" required />
+        <input
+          id="nombre"
+          name="nombre"
+          type="text"
+          placeholder="Ej: Ana Pérez"
+          autocomplete="name"
+          required
+        />
       </label>
 
       <div class="confirm-actions">
-        <button type="button" class="btn btn-confirm" id="btn-si">💖 Sí, asistiré</button>
-        <button type="button" class="btn no btn-confirm" id="btn-no">😔 No podré asistir</button>
+        <button type="button" class="btn btn-confirm" id="btn-si">
+          💖 Sí, asistiré
+        </button>
+        <button type="button" class="btn no btn-confirm" id="btn-no">
+          😔 No podré asistir
+        </button>
       </div>
 
       <a class="btn back-btn" href="index.html">⬅ Volver</a>
+
     </form>
 
   </div>
@@ -34,26 +47,47 @@
 
 <script>
   const nombreEl = document.getElementById("nombre");
-  const acompEl = document.getElementById("acompanantes");
 
-  function go(respuesta) {
+  function confirmar(respuesta) {
     const nombre = (nombreEl.value || "").trim();
+
     if (!nombre) {
       nombreEl.focus();
       return;
     }
-    const acompanantes = acompEl.value;
 
-    const url =
+    // ✅ MENSAJES DE WHATSAPP (SIN ACOMPAÑANTES)
+    const mensajeSi =
+      `Hola, soy ${nombre}. Confirmo que SÍ asistiré a la boda.\n\n` +
+      `Datos para regalo 🎁\n` +
+      `Banco: CHASE\n` +
+      `Titular: VLADIMIR Y MADAY\n` +
+      `Sort Code: 20-39-80\n` +
+      `Account Number: 59034525`;
+
+    const mensajeNo =
+      `Hola, soy ${nombre}. Lamentablemente NO podré asistir a la boda.`;
+
+    const mensaje = (respuesta === "si") ? mensajeSi : mensajeNo;
+
+    // 📲 Abrir WhatsApp
+    const waUrl =
+      `https://wa.me/+447729965201?text=${encodeURIComponent(mensaje)}`;
+    window.open(waUrl, "_blank");
+
+    // ➡️ Redirigir a gracias.html
+    const graciasUrl =
       `gracias.html?respuesta=${encodeURIComponent(respuesta)}` +
-      `&nombre=${encodeURIComponent(nombre)}` +
-      `&acompanantes=${encodeURIComponent(acompanantes)}`;
+      `&nombre=${encodeURIComponent(nombre)}`;
 
-    window.location.href = url;
+    window.location.href = graciasUrl;
   }
 
-  document.getElementById("btn-si").addEventListener("click", () => go("si"));
-  document.getElementById("btn-no").addEventListener("click", () => go("no"));
+  document.getElementById("btn-si")
+    .addEventListener("click", () => confirmar("si"));
+
+  document.getElementById("btn-no")
+    .addEventListener("click", () => confirmar("no"));
 </script>
 
 </body>
