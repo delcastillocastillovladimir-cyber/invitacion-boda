@@ -414,10 +414,9 @@ body {
 @media (min-width: 768px) {
   .hero {
     padding: 26px;
-    background: 105%;
+    background: 100%;
       linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)),
-      url("./imagen-couples.png") center / cover no-repeat;
-  }
+      url("./imagen-couples.png") center / cover no-repeat fixed;
   }
 
   .hero-content {
